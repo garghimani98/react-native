@@ -1,11 +1,12 @@
 import React,{useState} from 'react';
-import {StyleSheet,Text,View,Button} from 'react-native';
+import {StyleSheet,Text,View,Button, TextInput} from 'react-native';
 
 
 
 export default function App(){
     const[name,setName]=useState('shaun');
     const[person,setPerson]=useState({name:'mario',age:40});
+    const[age,setAge]=useState({30})
     const clickHandler=()=>{
         setName('Chun-li');
         setPerson({name:'lui-gi',age:45});
@@ -13,6 +14,17 @@ export default function App(){
     return(
      <View style={styles.container}>
          <Text>My name is {name}</Text>
+         <Text>My name is :</Text>
+         <TextInput multiline
+          style={styles.input}
+                     placeholder='Eg-John doe'
+                     onChangeText={(val)=>setName(val)}/>
+         <Text>My age is :</Text>
+         <TextInput
+          keyboardType="numeric"
+           style={styles.input}
+                     placeholder='Eg-20'
+                     onChangeText={(val)=>setAge(val)}/> 
          <Text>My name is {person.name} and age is {person.age}</Text>
          <View style={styles.buttonContainer}>
              <Button title="click me" onPress={clickHandler}/>
@@ -23,13 +35,21 @@ export default function App(){
 }
 
 const styles=StyleSheet.create({
-   container:{
-       flex:1, 
+   container: {
+       flex: 1, 
        backgroundColor:'#ffff',
        alignItems:'center',
        justifyContent:'center',
    },
    buttonContainer:{
        marginTop:20
+   },
+   input:{
+       borderWidth: 1,
+       borderColor: '#777',
+       padding:8,
+       margin:10,
+       width:200,
+
    }
 });
